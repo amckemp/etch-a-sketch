@@ -14,7 +14,8 @@ console.log('initial grid created');
 // Create grid w slider
 sliderInput.addEventListener("input", (event) => {
     clear();
-    createGrid(event.target.value);
+    gridSize = event.target.value;
+    createGrid(gridSize);
 });
 
 // Create grid
@@ -51,7 +52,6 @@ const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', clear);
 
 function clear () {
-        pixels.forEach((pixel) => {
-            pixel.classList.remove('colour');
-        });
+    grid.innerHTML = '';
+    createGrid(gridSize);
 }
