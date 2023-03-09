@@ -1,21 +1,39 @@
+* {
+    box-sizing: border-box;
+  }
+  
 body {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.title {
+    font-size: 32px;
 }
 
 .pixel {
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: black;
-    width: 20px;
-    height: 20px;
+    width: 31.25px;
+    height: 31.25px;
+}
+
+.grid {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    height: 500px;
+    width: 500px;
 }
 
 .row{
     display: flex;
-    flex: 1;
+}
+
+.colour {
+    background-color: black;
 }
