@@ -1,4 +1,5 @@
 const DEFAULT_GRID_SIZE = 16;
+const DEFAULT_COLOUR = '#000000';
 
 // Create initial 16 x 16 grid
 const body = document.querySelector('body');
@@ -6,10 +7,11 @@ const grid = document.querySelector('.grid');
 
 const sliderValue = document.querySelector('.sliderValue');
 const sliderInput = document.querySelector('.slider');
+
 let gridSize = DEFAULT_GRID_SIZE;
+let colour = DEFAULT_COLOUR;
 
 createGrid (gridSize);
-console.log('initial grid created');
 
 // Create grid w slider
 sliderInput.addEventListener("input", (event) => {
@@ -40,7 +42,7 @@ function createGrid (gridSize) {
 
             // When the mouse hovers over this div (pixel), change the colour
             div.addEventListener('mouseover', () => {
-                div.classList.add('colour');
+                div.style.backgroundColor = colour;
             });
         }
     }
@@ -55,3 +57,13 @@ function clear () {
     grid.innerHTML = '';
     createGrid(gridSize);
 }
+
+// Random color generator
+
+// Inpute from colour picker
+const colourPicker = document.querySelector('.colour-picker');
+
+colourPicker.addEventListener("input", (event) => {
+    colour = event.target.value;
+    console.log(colour);
+});
