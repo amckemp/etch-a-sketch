@@ -6,18 +6,22 @@ const body = document.querySelector('body');
 const grid = document.querySelector('.grid');
 
 const sliderValue = document.querySelector('.sliderValue');
-const sliderInput = document.querySelector('.slider');
+const sliderInput = document.querySelector('.gridsize-slider');
+const gridCheckbox = document.querySelector('.checkbox');
+
 
 let gridSize = DEFAULT_GRID_SIZE;
 let colour = DEFAULT_COLOUR;
 
 createGrid (gridSize);
+gridVisibilty();
 
 // Create grid w slider
 sliderInput.addEventListener("input", (event) => {
     clear();
     gridSize = event.target.value;
     createGrid(gridSize);
+    gridVisibilty();
 });
 
 // Create grid
@@ -33,7 +37,6 @@ function createGrid (gridSize) {
         grid.appendChild(row);
         
         for (let j = 0; j < gridSize; j++){
-
             const div = document.createElement('div');
             div.classList.add('pixel');
             row.appendChild(div);
@@ -44,12 +47,12 @@ function createGrid (gridSize) {
             div.addEventListener('mouseover', () => {
                 div.style.backgroundColor = colour;
             });
+
         }
     }
 };
 
 // Clear grid (clear all pixels)
-const pixels = document.querySelectorAll('.pixel');
 const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', clear);
 
@@ -65,5 +68,28 @@ const colourPicker = document.querySelector('.colour-picker');
 
 colourPicker.addEventListener("input", (event) => {
     colour = event.target.value;
-    console.log(colour);
 });
+
+// Grid ON/OFF
+function gridVisibilty() {
+    const pixels = document.querySelectorAll('.pixel');
+    
+    if (gridCheckbox.value == 'on'){
+        pixels.forEach((pixel) => {
+            pixel.classList.add('border');
+        }) 
+    } else {
+        pixels.forEach((pixel) => {
+            pixel.classList.remove('border');
+        })         
+    }
+}
+
+gridCheckbox.addEventListener('click', () => {
+    if (gridCheckbox.value == 'on'){
+        gridCheckbox.value = 'off';
+    } else {
+        gridCheckbox.value = 'on';
+    }
+    gridVisibilty();
+})
