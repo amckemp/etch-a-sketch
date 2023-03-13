@@ -14,7 +14,7 @@
 
     <div class="sidebar">
         <div class="title">Etch-a-Sketch</div>
-        <div>
+        <div> Colour picker:
             <input type="color" class="colour-picker">
         </div>
         <button class="clear">Clear</button>
@@ -24,10 +24,23 @@
             <input type="checkbox" checked="checked" class="checkbox" value="on">
         </div>
 
+        <div class="mouse-mode">
+            Mouse mode:
+            <ul>
+                <li><input type="radio" name="mode" checked="checked" class="hover" value="on">Hover</li>
+                <li><input type="radio" name="mode" class="click" value="off">Click and hold</li>
+            </ul>
+            
+        </div>
+
         <div class="sliderValue">16 x 16</div>
         <div class="sliderContainer">
             <input type="range" min="1" max="100" value="16" class="gridsize-slider" id="myRange" step="1">
           </div>
+
+        <div>
+            <button class="eraser">Eraser</button>
+        </div>
     </div>
 
     <div class="grid"></div>

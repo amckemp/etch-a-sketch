@@ -93,3 +93,10 @@ gridCheckbox.addEventListener('click', () => {
     }
     gridVisibilty();
 })
+
+//eraser
+const eraser = document.querySelector('.eraser');
+
+eraser.addEventListener('click', () => {
+    colour = 'white';
+});

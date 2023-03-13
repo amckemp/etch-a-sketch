@@ -10,6 +10,18 @@ body {
     align-items: center;
 }
 
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .title {
     font-size: 32px;
 }
