@@ -42,12 +42,11 @@ function createGrid (gridSize) {
             row.appendChild(div);
             div.style.width = `${500/gridSize}px`;
             div.style.height = `${500/gridSize}px`;
-
+            div.value = 0.1;
             // When the mouse hovers over this div (pixel), change the colour
             div.addEventListener('mouseover', () => {
-                div.style.backgroundColor = colour;
+                changeColour(div);
             });
-
         }
     }
 };
@@ -60,15 +59,6 @@ function clear () {
     grid.innerHTML = '';
     createGrid(gridSize);
 }
-
-// Random color generator
-
-// Inpute from colour picker
-const colourPicker = document.querySelector('.colour-picker');
-
-colourPicker.addEventListener("input", (event) => {
-    colour = event.target.value;
-});
 
 // Grid ON/OFF
 function gridVisibilty() {
@@ -94,9 +84,50 @@ gridCheckbox.addEventListener('click', () => {
     gridVisibilty();
 })
 
-//eraser
-const eraser = document.querySelector('.eraser');
+// Current colour mode
+let currentMode = 'black';
 
-eraser.addEventListener('click', () => {
-    colour = 'white';
+const eraser = document.querySelector('.eraser');
+eraser.addEventListener('click', (e) => {
+    currentMode = 'eraser';
 });
+
+const colourPicker = document.querySelector('.colour-picker');
+colourPicker.addEventListener("input", () => {
+    currentMode = 'colour picker';
+});
+
+const greyscale = document.querySelector('.greyscale');
+greyscale.addEventListener('click', () => {
+    currentMode = 'greyscale';
+});
+
+const random = document.querySelector('.random');
+random.addEventListener('click', () => {
+    currentMode = 'random';
+});
+
+// Change colour
+
+function changeColour (e) {
+    // eraser
+    if (currentMode == 'eraser'){
+        e.style.backgroundColor = 'white';
+    } else if (currentMode == 'colour picker'){
+        e.style.backgroundColor = colourPicker.target.value;
+    } else if (currentMode == 'greyscale'){
+        e.style.backgroundColor = `rgba(0,0,0,${e.value})`;
+        e.value += 0.1;
+    } else if (currentMode == 'random'){
+        let red = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+        e.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    } else if (currentMode == 'rainbow'){
+
+    } else {
+        //default
+        e.style.backgroundColor = 'black';
+    }
+    
+}
