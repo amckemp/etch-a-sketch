@@ -58,6 +58,7 @@ clearButton.addEventListener('click', clear);
 function clear () {
     grid.innerHTML = '';
     createGrid(gridSize);
+    gridVisibilty();
 }
 
 // Grid ON/OFF
@@ -114,7 +115,7 @@ function changeColour (e) {
     if (currentMode == 'eraser'){
         e.style.backgroundColor = 'white';
     } else if (currentMode == 'colour picker'){
-        e.style.backgroundColor = colourPicker.target.value;
+        e.style.backgroundColor = colourPicker.value;
     } else if (currentMode == 'greyscale'){
         e.style.backgroundColor = `rgba(0,0,0,${e.value})`;
         e.value += 0.1;
